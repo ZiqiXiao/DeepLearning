@@ -104,7 +104,7 @@ class WideDeep(nn.Module):
         if method == 'regression':
             self.activation, self.criterion = None, F.mse_loss
         if method == 'logistic':
-            self.activation, self.criterion = F.sigmoid, F.binary_cross_entropy
+            self.activation, self.criterion = torch.sigmoid, F.binary_cross_entropy
         if method == 'multiclass':
             self.activation, self.criterion = F.softmax, F.cross_entropy
 
@@ -186,7 +186,10 @@ class WideDeep(nn.Module):
 
                 self.optimizer.zero_grad()
                 y_pred =  net(X_w, X_d)
-                loss = self.criterion(y_pred, y)
+                if self.method == "multiclass":
+                    loss = self.criterion(y_pred, y)
+                else:
+                    loss = self.criterion(y_pred, y.reshape(-1, 1))
                 loss.backward()
                 self.optimizer.step()
 
@@ -196,14 +199,14 @@ class WideDeep(nn.Module):
                         y_pred_cat = (y_pred > 0.5).squeeze(1).float()
                     if self.method == "multiclass":
                         _, y_pred_cat = torch.max(y_pred, 1)
-                    correct+= float((y_pred_cat == y).sum().data[0])
+                    correct+= float((y_pred_cat == y).sum().item())
 
             if self.method != "regression":
                 print ('Epoch {} of {}, Loss: {}, accuracy: {}'.format(epoch+1,
-                                                                       n_epochs, round(loss.data[0],3), round(correct/total,4)))
+                                                                       n_epochs, round(loss.item(),3), round(correct/total,4)))
             else:
                 print ('Epoch {} of {}, Loss: {}'.format(epoch+1, n_epochs,
-                                                         round(loss.data[0],3)))
+                                                         round(loss.item(),3)))
 
 
     def predict(self, dataset):
