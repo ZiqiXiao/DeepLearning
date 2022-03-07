@@ -12,4 +12,4 @@
 - [相关论文](https://gitee.com/xiaoziqi0624/deep-learning/tree/master/article)
 
 下图介绍在推荐领域中，各个深度学习模型的发展与关系：
-![DL_Recom.png](/https://gitee.com/xiaoziqi0624/deep-learning/raw/master/pic/DL_Recom.png)
+![DL_Recom.png](https://gitee.com/xiaoziqi0624/deep-learning/raw/master/pic/DL_Recom.png)
