@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/deep-learning.iml" filepath="$PROJECT_DIR$/.idea/deep-learning.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../Craiditx/项目/招行/推荐系统-五期（2022）/项目管理/实施过程/知识图谱迁移/MARS_UAT/知识图谱_上游mock数据/v8/竖线分割/.idea/竖线分割.iml" filepath="$PROJECT_DIR$/../../Craiditx/项目/招行/推荐系统-五期（2022）/项目管理/实施过程/知识图谱迁移/MARS_UAT/知识图谱_上游mock数据/v8/竖线分割/.idea/竖线分割.iml" />
     </modules>
   </component>
 </project>

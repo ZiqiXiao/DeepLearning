@@ -1,20 +1,17 @@
-import cv2  # opencv读取的格式是BGR，与matplotlib不同
-import matplotlib.pyplot as plt
-import numpy as np
+import sqlite3
+sql = open('/Users/xiaoziqi/Desktop/Craiditx/项目/内部/营销场景二分类/sql/train_test_oot.sql', 'r', encoding = 'utf8')
+sqltxt = sql.readlines()
+# 此时 sqltxt 为 list 类型
 
-pic_path = '/Users/xiaoziqi/Desktop/Code/deep-learning/OpenCV/data/cat1.jpeg'
-img = cv2.imread(pic_path)
+# 读取之后关闭文件
+sql.close()
 
-
-def cv_show(name_image, image):
-    # 图像的显示，也可以创建多个窗口
-    cv2.imshow(name_image, image)
-    # 等待时间，毫秒级，0表示任意键终止
-    cv2.waitKey(500)
-    cv2.destroyAllWindows()
+# list 转 str
+sql = "".join(sqltxt)
 
 
-cur_img = img.copy()
-cur_img[:, :, 0] = 0
-cur_img[:, :, 1] = 0
-cv_show('cur_img', cur_img)
+con = sqlite3.connect("/Users/xiaoziqi/Desktop/Craiditx/项目/内部/营销场景二分类/流失预警数据/craiditx.db")
+cur = con.cursor()
+cur.executescript(sql)
+con.commit()
+con.close()
